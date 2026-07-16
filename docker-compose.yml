@@ -1,0 +1,10 @@
+services:
+  ca1:
+    build: ./ca
+    container_name: ca1
+    hostname: ca1
+    volumes:
+      - ca-data:/etc/fis-ca
+
+volumes:
+  ca-data:

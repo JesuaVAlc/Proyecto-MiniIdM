@@ -1,0 +1,29 @@
+# Certificados y llaves privadas generadas en runtime
+**/private/*.key
+**/private/*.pem
+**/certs/*.key.pem
+*.key
+*.srl
+
+# Bases de datos generadas (LDAP, Kerberos)
+**/data/
+**/*.mdb
+**/principal
+**/principal.kadm5*
+**/*.dump
+
+# Keytabs (nunca deben subirse, son credenciales)
+*.keytab
+
+# Docker
+*.tar
+*.tar.gz
+
+# Variables de entorno reales (solo .env.example va al repo)
+.env
+
+# Logs y resultados temporales de pruebas (deja results/*.csv si quieres versionarlos, ignora logs crudos)
+*.log
+
+# Sistema
+.DS_Store
