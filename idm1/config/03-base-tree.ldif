@@ -1,0 +1,19 @@
+dn: dc=fis,dc=epn,dc=ec
+objectClass: top
+objectClass: dcObject
+objectClass: organization
+o: FIS EPN
+dc: fis
+
+dn: ou=people,dc=fis,dc=epn,dc=ec
+objectClass: organizationalUnit
+ou: people
+
+dn: ou=groups,dc=fis,dc=epn,dc=ec
+objectClass: organizationalUnit
+ou: groups
+
+dn: cn=fisusers,ou=groups,dc=fis,dc=epn,dc=ec
+objectClass: posixGroup
+cn: fisusers
+gidNumber: 5000

@@ -1,0 +1,97 @@
+dn: uid=jperez,ou=people,dc=fis,dc=epn,dc=ec
+objectClass: inetOrgPerson
+objectClass: posixAccount
+objectClass: shadowAccount
+uid: jperez
+cn: Juan Perez
+sn: Perez
+mail: jperez@fis.epn.ec
+uidNumber: 10001
+gidNumber: 5000
+homeDirectory: /home/jperez
+loginShell: /bin/bash
+userPassword: {SASL}jperez@FIS.EPN.EC
+
+dn: uid=malvan,ou=people,dc=fis,dc=epn,dc=ec
+objectClass: inetOrgPerson
+objectClass: posixAccount
+objectClass: shadowAccount
+uid: malvan
+cn: Maria Alvarado
+sn: Alvarado
+mail: malvan@fis.epn.ec
+uidNumber: 10002
+gidNumber: 5000
+homeDirectory: /home/malvan
+loginShell: /bin/bash
+userPassword: {SASL}malvan@FIS.EPN.EC
+
+dn: uid=dnoboa,ou=people,dc=fis,dc=epn,dc=ec
+objectClass: inetOrgPerson
+objectClass: posixAccount
+objectClass: shadowAccount
+uid: dnoboa
+cn: Diego Noboa
+sn: Noboa
+mail: dnoboa@fis.epn.ec
+uidNumber: 10003
+gidNumber: 5000
+homeDirectory: /home/dnoboa
+loginShell: /bin/bash
+userPassword: {SASL}dnoboa@FIS.EPN.EC
+
+dn: uid=jvillacis,ou=people,dc=fis,dc=epn,dc=ec
+objectClass: inetOrgPerson
+objectClass: posixAccount
+objectClass: shadowAccount
+uid: jvillacis
+cn: Jesua Villacis
+sn: Villacis
+mail: jvillacis@fis.epn.ec
+uidNumber: 10004
+gidNumber: 5000
+homeDirectory: /home/jvillacis
+loginShell: /bin/bash
+userPassword: {SASL}jvillacis@FIS.EPN.EC
+
+dn: uid=lheredia,ou=people,dc=fis,dc=epn,dc=ec
+objectClass: inetOrgPerson
+objectClass: posixAccount
+objectClass: shadowAccount
+uid: lheredia
+cn: Lia Heredia
+sn: Heredia
+mail: lheredia@fis.epn.ec
+uidNumber: 10005
+gidNumber: 5000
+homeDirectory: /home/lheredia
+loginShell: /bin/bash
+userPassword: {SASL}lheredia@FIS.EPN.EC
+
+dn: uid=porozco,ou=people,dc=fis,dc=epn,dc=ec
+objectClass: inetOrgPerson
+objectClass: posixAccount
+objectClass: shadowAccount
+uid: porozco
+cn: Patricia Orozco
+sn: Orozco
+mail: porozco@fis.epn.ec
+uidNumber: 10006
+gidNumber: 5000
+homeDirectory: /home/porozco
+loginShell: /bin/bash
+userPassword: {SASL}porozco@FIS.EPN.EC
+
+dn: uid=aquinto,ou=people,dc=fis,dc=epn,dc=ec
+objectClass: inetOrgPerson
+objectClass: posixAccount
+objectClass: shadowAccount
+uid: aquinto
+cn: Alizon Quinto
+sn: Quinto
+mail: aquinto@fis.epn.ec
+uidNumber: 10007
+gidNumber: 5000
+homeDirectory: /home/aquinto
+loginShell: /bin/bash
+userPassword: {SASL}aquinto@FIS.EPN.EC
