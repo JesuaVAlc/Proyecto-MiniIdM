@@ -40,6 +40,21 @@ else
   chown openldap:openldap /etc/krb5kdc/ldap.keytab 2>/dev/null || true
   chmod 640 /etc/krb5kdc/ldap.keytab
 
+  echo "[idm1] Creando principals de host para kprop/kpropd..."
+kadmin.local -q "addprinc -randkey host/idm1.fis.epn.ec" || true
+kadmin.local -q "addprinc -randkey host/idm2.fis.epn.ec" || true
+
+kadmin.local -q "ktadd -k /etc/krb5kdc/idm1-host.keytab host/idm1.fis.epn.ec"
+
+mkdir -p /etc/krb5kdc/shared
+kadmin.local -q "ktadd -k /etc/krb5kdc/shared/idm2-host.keytab host/idm2.fis.epn.ec"
+chmod 644 /etc/krb5kdc/shared/idm2-host.keytab
+
+cp /etc/krb5kdc/stash /etc/krb5kdc/shared/stash
+chmod 600 /etc/krb5kdc/shared/stash
+
+echo "[idm1] Principals de host y material compartido listos para kprop."
+
   touch "$MARKER"
   echo "[idm1] Kerberos inicializado correctamente."
 fi

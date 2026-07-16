@@ -5,6 +5,9 @@ ENV DEBIAN_FRONTEND=noninteractive
 RUN apt-get update && apt-get install -y --no-install-recommends \
     slapd \
     ldap-utils \
+    krb5-kdc \
+    krb5-admin-server \
+    krb5-config \
     openssl \
     ca-certificates \
     gettext-base \
@@ -14,14 +17,18 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
 
 RUN systemctl disable slapd 2>/dev/null || true
 
+COPY config/krb5.conf /etc/krb5.conf
+COPY config/kdc.conf /etc/krb5kdc/kdc.conf
+COPY config/kpropd.acl /etc/krb5kdc/kpropd.acl
 COPY config/supervisord.conf /etc/supervisor/conf.d/supervisord.conf
 COPY config/ /etc/idm2-config/
 COPY config/ldap.conf /etc/ldap/ldap.conf
 
 COPY scripts/init-ldap-replica.sh /usr/local/bin/init-ldap-replica.sh
+COPY scripts/init-kerberos-replica.sh /usr/local/bin/init-kerberos-replica.sh
 COPY scripts/entrypoint.sh /usr/local/bin/entrypoint.sh
 RUN chmod +x /usr/local/bin/*.sh
 
-EXPOSE 389 636
+EXPOSE 389 636 88 88/udp 754
 
 ENTRYPOINT ["/usr/local/bin/entrypoint.sh"]

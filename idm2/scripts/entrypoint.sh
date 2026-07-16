@@ -24,6 +24,7 @@ until nc -z idm1 636 2>/dev/null || [ $COUNTER -ge 30 ]; do
 done
 
 /usr/local/bin/init-ldap-replica.sh
+/usr/local/bin/init-kerberos-replica.sh
 
 echo "[idm2] Inicializacion completa. Lanzando supervisord..."
 exec /usr/bin/supervisord -c /etc/supervisor/conf.d/supervisord.conf
