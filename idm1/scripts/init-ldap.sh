@@ -21,6 +21,9 @@ envsubst < "${CONFIG_DIR}/01-base-config.ldif.template" > /tmp/01-base-config.ld
 ldapmodify -Y EXTERNAL -H ldapi:/// -f /tmp/01-base-config.ldif
 echo "[idm1] Configuracion base (cn=config) reaplicada."
 
+ldapmodify -Y EXTERNAL -H ldapi:/// -f "${CONFIG_DIR}/05-syncprov.ldif" || \
+  echo "[idm1] syncprov ya aplicado o no aplicable, continuando."
+echo "[idm1] Overlay syncprov verificado."
 
 if [ -f /etc/fis-ca/issued/idm1/idm1.cert.pem ]; then
   mkdir -p /etc/ldap/certs
