@@ -3,11 +3,6 @@ set -euo pipefail
 
 MARKER=/var/lib/ldap/.initialized
 
-if [ -f "$MARKER" ]; then
-  echo "[idm1] LDAP ya inicializado, omitiendo."
-  exit 0
-fi
-
 echo "[idm1] Configurando OpenLDAP..."
 
 export LDAP_ADMIN_PASSWORD="${LDAP_ADMIN_PASSWORD:-changeme}"
@@ -17,12 +12,15 @@ HASHED_PW=$(slappasswd -s "${LDAP_ADMIN_PASSWORD}")
 
 CONFIG_DIR=/etc/idm1-config
 
-# Arranca LDAP
+# Arranca LDAP 
 slapd -h "ldapi:///" -u openldap -g openldap
 sleep 3
 
+
 envsubst < "${CONFIG_DIR}/01-base-config.ldif.template" > /tmp/01-base-config.ldif
 ldapmodify -Y EXTERNAL -H ldapi:/// -f /tmp/01-base-config.ldif
+echo "[idm1] Configuracion base (cn=config) reaplicada."
+
 
 if [ -f /etc/fis-ca/issued/idm1/idm1.cert.pem ]; then
   mkdir -p /etc/ldap/certs
@@ -39,20 +37,15 @@ else
   echo "[idm1] ADVERTENCIA: certificado TLS no encontrado, LDAPS no disponible aun."
 fi
 
-if [ -f /etc/fis-ca/issued/idm1/idm1.cert.pem ]; then
-  ldapmodify -Y EXTERNAL -H ldapi:/// -f "${CONFIG_DIR}/02-tls-config.ldif"
-  echo "[idm1] TLS configurado para LDAP."
-else
-  echo "[idm1] ADVERTENCIA: certificado TLS no encontrado, LDAPS no disponible aun."
+if [ ! -f "$MARKER" ]; then
+  ldapadd -x -D "cn=admin,${LDAP_BASE_DN}" -w "${LDAP_ADMIN_PASSWORD}" \
+    -H ldapi:/// -f "${CONFIG_DIR}/03-base-tree.ldif"
+
+  ldapadd -x -D "cn=admin,${LDAP_BASE_DN}" -w "${LDAP_ADMIN_PASSWORD}" \
+    -H ldapi:/// -f "${CONFIG_DIR}/04-users.ldif"
+
+  touch "$MARKER"
+  echo "[idm1] Arbol LDAP inicializado correctamente."
 fi
 
-ldapadd -x -D "cn=admin,${LDAP_BASE_DN}" -w "${LDAP_ADMIN_PASSWORD}" \
-  -H ldapi:/// -f "${CONFIG_DIR}/03-base-tree.ldif"
-
-ldapadd -x -D "cn=admin,${LDAP_BASE_DN}" -w "${LDAP_ADMIN_PASSWORD}" \
-  -H ldapi:/// -f "${CONFIG_DIR}/04-users.ldif"
-
 pkill slapd
-
-touch "$MARKER"
-echo "[idm1] LDAP inicializado correctamente."
