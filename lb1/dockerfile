@@ -1,0 +1,19 @@
+FROM ubuntu:24.04
+
+ENV DEBIAN_FRONTEND=noninteractive
+
+RUN apt-get update && apt-get install -y \
+    haproxy \
+    keepalived \
+    iproute2 \
+    procps \
+    && rm -rf /var/lib/apt/lists/*
+
+COPY config/haproxy.cfg /etc/haproxy/haproxy.cfg
+RUN echo "" >> /etc/haproxy/haproxy.cfg
+COPY config/keepalived.conf /etc/keepalived/keepalived.conf
+RUN chmod 644 /etc/keepalived/keepalived.conf
+COPY scripts/entrypoint.sh /usr/local/bin/entrypoint.sh
+RUN chmod +x /usr/local/bin/entrypoint.sh
+
+ENTRYPOINT ["/usr/local/bin/entrypoint.sh"]

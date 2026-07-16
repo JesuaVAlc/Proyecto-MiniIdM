@@ -50,9 +50,52 @@ services:
       - ca1
       - idm1
 
+  client:
+    build:
+      context: ./client
+    container_name: client
+    networks:
+      - fis-net   
+    depends_on:
+      - idm1
+      - idm2
+
+  lb1:
+    build:
+      context: ./lb1
+    container_name: lb1
+    hostname: lb1
+    cap_add:
+      - NET_ADMIN
+      - NET_RAW
+    networks:
+      fis-net:
+        ipv4_address: 172.28.0.10
+    depends_on:
+      - idm1
+      - idm2
+
+  lb2:
+    build:
+      context: ./lb2
+    container_name: lb2
+    hostname: lb2
+    cap_add:
+      - NET_ADMIN
+      - NET_RAW
+    networks:
+      fis-net:
+        ipv4_address: 172.28.0.11
+    depends_on:
+      - idm1
+      - idm2
+      
 networks:
   fis-net:
     driver: bridge
+    ipam:
+      config:
+        - subnet: 172.28.0.0/24
 
 volumes:
   ca-data:
