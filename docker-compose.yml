@@ -27,6 +27,25 @@ services:
       - ca-data:/etc/fis-ca:ro
     depends_on:
       - ca1
+
+  idm2:
+    build: ./idm2
+    container_name: idm2
+    hostname: idm2
+    environment:
+      - LDAP_ADMIN_PASSWORD=${LDAP_ADMIN_PASSWORD}
+      - LDAP_BASE_DN=${LDAP_BASE_DN}
+    networks:
+      fis-net:
+        aliases:
+          - idm2.fis.epn.ec
+    volumes:
+      - idm2-ldap-data:/var/lib/ldap
+      - ca-data:/etc/fis-ca:ro
+    depends_on:
+      - ca1
+      - idm1
+
 networks:
   fis-net:
     driver: bridge
@@ -35,3 +54,4 @@ volumes:
   ca-data:
   idm1-ldap-data:
   idm1-krb5-data:
+  idm2-ldap-data:

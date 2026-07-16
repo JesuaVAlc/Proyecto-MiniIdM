@@ -1,0 +1,17 @@
+dn: olcDatabase={1}mdb,cn=config
+changetype: modify
+add: olcSyncrepl
+olcSyncrepl: rid=1
+  provider=ldaps://idm1:636
+  bindmethod=simple
+  binddn="cn=admin,${LDAP_BASE_DN}"
+  credentials="${LDAP_ADMIN_PASSWORD}"
+  searchbase="${LDAP_BASE_DN}"
+  type=refreshAndPersist
+  retry="5 5 300 +"
+  interval=00:00:05:00
+  tls_cacert=/etc/ldap/certs/ca.cert.pem
+  starttls=no
+-
+add: olcUpdateRef
+olcUpdateRef: ldaps://idm1:636

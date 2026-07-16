@@ -1,0 +1,27 @@
+FROM ubuntu:24.04
+
+ENV DEBIAN_FRONTEND=noninteractive
+
+RUN apt-get update && apt-get install -y --no-install-recommends \
+    slapd \
+    ldap-utils \
+    openssl \
+    ca-certificates \
+    gettext-base \
+    supervisor \
+    netcat-openbsd \
+    && rm -rf /var/lib/apt/lists/*
+
+RUN systemctl disable slapd 2>/dev/null || true
+
+COPY config/supervisord.conf /etc/supervisor/conf.d/supervisord.conf
+COPY config/ /etc/idm2-config/
+COPY config/ldap.conf /etc/ldap/ldap.conf
+
+COPY scripts/init-ldap-replica.sh /usr/local/bin/init-ldap-replica.sh
+COPY scripts/entrypoint.sh /usr/local/bin/entrypoint.sh
+RUN chmod +x /usr/local/bin/*.sh
+
+EXPOSE 389 636
+
+ENTRYPOINT ["/usr/local/bin/entrypoint.sh"]
