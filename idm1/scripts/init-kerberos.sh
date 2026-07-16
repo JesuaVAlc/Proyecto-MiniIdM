@@ -41,9 +41,14 @@ else
   chmod 640 /etc/krb5kdc/ldap.keytab
 
   echo "[idm1] Creando principals de host para kprop/kpropd..."
-kadmin.local -q "addprinc -randkey host/idm1.fis.epn.ec" || true
-kadmin.local -q "addprinc -randkey host/idm2.fis.epn.ec" || true
+  kadmin.local -q "addprinc -randkey host/idm1.fis.epn.ec" || true
+  kadmin.local -q "addprinc -randkey host/idm2.fis.epn.ec" || true
 
+  touch "$MARKER"
+  echo "[idm1] Kerberos inicializado correctamente."
+fi
+
+echo "[idm1] Regenerando keytabs de host y material compartido (ruta efimera)..."
 kadmin.local -q "ktadd -k /etc/krb5kdc/idm1-host.keytab host/idm1.fis.epn.ec"
 
 mkdir -p /etc/krb5kdc/shared
@@ -54,7 +59,3 @@ cp /etc/krb5kdc/stash /etc/krb5kdc/shared/stash
 chmod 600 /etc/krb5kdc/shared/stash
 
 echo "[idm1] Principals de host y material compartido listos para kprop."
-
-  touch "$MARKER"
-  echo "[idm1] Kerberos inicializado correctamente."
-fi

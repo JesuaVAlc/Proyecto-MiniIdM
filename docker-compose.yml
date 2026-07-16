@@ -11,7 +11,7 @@ services:
   idm1:
     build: ./idm1
     container_name: idm1
-    hostname: idm1
+    hostname: idm1.fis.epn.ec
     environment:
       - LDAP_ADMIN_PASSWORD=${LDAP_ADMIN_PASSWORD}
       - LDAP_BASE_DN=${LDAP_BASE_DN}
@@ -32,7 +32,7 @@ services:
   idm2:
     build: ./idm2
     container_name: idm2
-    hostname: idm2
+    hostname: idm2.fis.epn.ec
     environment:
       - LDAP_ADMIN_PASSWORD=${LDAP_ADMIN_PASSWORD}
       - LDAP_BASE_DN=${LDAP_BASE_DN}

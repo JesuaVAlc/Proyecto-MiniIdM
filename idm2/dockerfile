@@ -8,6 +8,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     krb5-kdc \
     krb5-admin-server \
     krb5-config \
+    krb5-kpropd \
     openssl \
     ca-certificates \
     gettext-base \

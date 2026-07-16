@@ -18,20 +18,19 @@ if [ ! -f "${SHARED}/stash" ]; then
   exit 1
 fi
 
+echo "[idm2] Copiando stash y keytab de host desde idm1 (ruta efimera, se reaplica en cada arranque)..."
+cp "${SHARED}/stash" /etc/krb5kdc/stash
+chmod 600 /etc/krb5kdc/stash
+
+cp "${SHARED}/idm2-host.keytab" /etc/krb5kdc/idm2-host.keytab
+chmod 600 /etc/krb5kdc/idm2-host.keytab
+
 if [ ! -f "$MARKER" ]; then
-  echo "[idm2] Copiando stash y keytab de host desde idm1..."
-  cp "${SHARED}/stash" /etc/krb5kdc/stash
-  chmod 600 /etc/krb5kdc/stash
-
-  cp "${SHARED}/idm2-host.keytab" /etc/krb5kdc/idm2-host.keytab
-  chmod 600 /etc/krb5kdc/idm2-host.keytab
-
   kdb5_util create -s -r FIS.EPN.EC -P "${KRB5_ADMIN_PASSWORD:-changeme_admin}" || true
-
   touch "$MARKER"
-  echo "[idm2] KDC secundario preparado para recibir propagacion via kpropd."
+  echo "[idm2] KDC secundario preparado por primera vez para recibir propagacion via kpropd."
 else
-  echo "[idm2] KDC secundario ya inicializado, omitiendo."
+  echo "[idm2] Base de datos local ya existe, omitiendo kdb5_util create."
 fi
 
 echo "[idm2] Recuerda ejecutar propagate-kerberos.sh en idm1 para la primera sincronizacion."
