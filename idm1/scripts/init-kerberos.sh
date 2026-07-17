@@ -59,3 +59,12 @@ cp /etc/krb5kdc/stash /etc/krb5kdc/shared/stash
 chmod 600 /etc/krb5kdc/shared/stash
 
 echo "[idm1] Principals de host y material compartido listos para kprop."
+
+echo "[idm1] Creando principal de servicio HTTP para web1..."
+kadmin.local -q "addprinc -randkey HTTP/web1.fis.epn.ec" || true
+
+mkdir -p /etc/krb5kdc/keytabs-out
+kadmin.local -q "ktadd -k /etc/krb5kdc/keytabs-out/web1-http.keytab HTTP/web1.fis.epn.ec"
+chmod 644 /etc/krb5kdc/keytabs-out/web1-http.keytab
+
+echo "[idm1] Keytab de servicio HTTP publicado para web1."

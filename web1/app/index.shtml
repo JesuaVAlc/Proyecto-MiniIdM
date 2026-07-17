@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>FIS - Portal Autenticado</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="card">
+        <h1>Acceso concedido</h1>
+        <p class="subtitle">Facultad de Ingenieria de Sistemas - EPN</p>
+        <div class="user-box">
+            <span class="label">Usuario autenticado:</span>
+            <span class="user"><!--#echo var="REMOTE_USER" --></span>
+        </div>
+        <p class="realm">Realm: FIS.EPN.EC</p>
+        <p class="footer">Autenticado via Kerberos (SPNEGO) sobre TLS</p>
+    </div>
+</body>
+</html>
