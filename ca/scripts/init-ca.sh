@@ -27,8 +27,8 @@ else
 fi
 
 echo "[ca1] Emitiendo/verificando certificados de los nodos conocidos..."
-sign-cert.sh idm1 idm1.fis.epn.ec "DNS:idm1,DNS:idm1.fis.epn.ec"
-sign-cert.sh idm2 idm2.fis.epn.ec "DNS:idm2,DNS:idm2.fis.epn.ec"
+sign-cert.sh idm1 idm1.fis.epn.ec "DNS:idm1,DNS:idm1.fis.epn.ec,DNS:ldap.fis.epn.ec,IP:192.168.25.100"
+sign-cert.sh idm2 idm2.fis.epn.ec "DNS:idm2,DNS:idm2.fis.epn.ec,DNS:ldap.fis.epn.ec,IP:192.168.25.100"
 sign-cert.sh web1 web1.fis.epn.ec "DNS:web1,DNS:web1.fis.epn.ec"
 echo "[ca1] Certificados de nodos listos."
 

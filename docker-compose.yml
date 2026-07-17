@@ -64,6 +64,9 @@ services:
     build:
       context: ./client
     container_name: client
+    environment:
+      - LDAP_ADMIN_PASSWORD=${LDAP_ADMIN_PASSWORD}
+      - LDAP_BASE_DN=${LDAP_BASE_DN}
     networks:
       fis-net:
         ipv4_address: 192.168.25.40
