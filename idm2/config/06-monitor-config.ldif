@@ -1,0 +1,5 @@
+dn: olcDatabase={2}monitor,cn=config
+objectClass: olcDatabaseConfig
+objectClass: olcMonitorConfig
+olcDatabase: {2}monitor
+olcAccess: {0}to * by dn.exact="cn=admin,dc=fis,dc=epn,dc=ec" read by * none

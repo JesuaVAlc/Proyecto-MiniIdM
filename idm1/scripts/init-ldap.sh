@@ -51,4 +51,6 @@ if [ ! -f "$MARKER" ]; then
   echo "[idm1] Arbol LDAP inicializado correctamente."
 fi
 
+ldapadd -Y EXTERNAL -H ldapi:/// -f "${CONFIG_DIR}/06-monitor-config.ldif" 2>&1 | grep -v "already exists" || true
+
 pkill slapd

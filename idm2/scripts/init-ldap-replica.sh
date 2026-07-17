@@ -44,4 +44,6 @@ if [ ! -f "$MARKER" ]; then
   echo "[idm2] Marcado como inicializado (el arbol llega via syncrepl, no via ldapadd local)."
 fi
 
+ldapadd -Y EXTERNAL -H ldapi:/// -f "${CONFIG_DIR}/06-monitor-config.ldif" 2>&1 | grep -v "already exists" || true
+
 pkill slapd
