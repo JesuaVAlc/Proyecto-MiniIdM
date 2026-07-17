@@ -1,0 +1,19 @@
+=== Orquestador de experimentos MiniIdM ===
+Inicio: 2026-07-17T09:33:53.982Z
+
+--- Replicacion LDAP (1 corridas) ---
+[orquestador] Replicacion LDAP: corrida 1 FALLO (exit 127)
+[resumen] Replicacion LDAP: 0/1 exitosas, sin datos para promedio
+
+--- Overhead TLS (1 corridas) ---
+[orquestador] Overhead TLS: corrida 1 FALLO (exit 127)
+[resumen] Overhead TLS: 0/1 exitosas, sin datos para promedio
+
+--- Throughput balanceo (1 corridas) ---
+[orquestador] Throughput balanceo: corrida 1 FALLO (exit 127)
+[resumen] Throughput balanceo: 0/1 exitosas, sin datos para promedio
+
+--- Failover KDC (1 corridas) ---
+[resumen] Failover KDC: 1/1 exitosas, promedio = 0.283528
+
+--- Recuperacion nodo (idm1/slapd) (1 corridas) ---

@@ -7,8 +7,8 @@ set -uo pipefail
 
 USER="jperez"
 PASS="${KRB5_USER_DEFAULT_PASSWORD:-changeme_user}"
-OUT_FILE="experimentos/resultados/failover-kdc-$(date +%Y%m%d-%H%M%S).txt"
-mkdir -p experimentos/resultados
+OUT_FILE="experimentos/resultados/logs/failover-kdc-$(date +%Y%m%d-%H%M%S).txt"
+mkdir -p experimentos/resultados/logs
 
 echo "[experimento] Latencia de failover del KDC (idm1 -> idm2)" | tee "$OUT_FILE"
 

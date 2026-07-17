@@ -9,8 +9,8 @@ export LDAPTLS_CACERT=/etc/fis-ca/certs/ca.cert.pem
 
 BASE_DN="${LDAP_BASE_DN}"
 ADMIN_PASS="${LDAP_ADMIN_PASSWORD}"
-OUT_FILE="/experimentos-resultados/overhead-tls-$(date +%Y%m%d-%H%M%S).txt"
-mkdir -p /experimentos-resultados
+OUT_FILE="/experimentos-resultados/logs/overhead-tls-$(date +%Y%m%d-%H%M%S).txt"
+mkdir -p /experimentos-resultados/logs
 
 echo "[experimento] Overhead de TLS: LDAP plano vs LDAPS" | tee "$OUT_FILE"
 

@@ -6,8 +6,8 @@ set -uo pipefail
 
 SERVICIO="${1:-idm1}"
 PROCESO="${2:-slapd}"
-OUT_FILE="experimentos/resultados/recuperacion-nodo-${SERVICIO}-${PROCESO}-$(date +%Y%m%d-%H%M%S).txt"
-mkdir -p experimentos/resultados
+OUT_FILE="experimentos/resultados/logs/recuperacion-nodo-${SERVICIO}-${PROCESO}-$(date +%Y%m%d-%H%M%S).txt"
+mkdir -p experimentos/resultados/logs
 
 echo "[experimento] Tiempo de recuperacion: kill -9 a '${PROCESO}' en '${SERVICIO}'" | tee "$OUT_FILE"
 

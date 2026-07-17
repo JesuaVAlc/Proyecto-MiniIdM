@@ -1,0 +1,2 @@
+[experimento] Tiempo de recuperacion: kill -9 a 'slapd' en 'idm1'
+[experimento] T0 (kill -9 enviado): 2026-07-17T09:33:56.730Z

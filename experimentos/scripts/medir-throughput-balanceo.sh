@@ -11,8 +11,8 @@ BASE_DN="${LDAP_BASE_DN}"
 ADMIN_PASS="${LDAP_ADMIN_PASSWORD}"
 VIP="192.168.25.100"
 N_REQUESTS="${1:-50}"
-OUT_FILE="/experimentos-resultados/throughput-balanceo-$(date +%Y%m%d-%H%M%S).txt"
-mkdir -p /experimentos-resultados
+OUT_FILE="/experimentos-resultados/logs/throughput-balanceo-$(date +%Y%m%d-%H%M%S).txt"
+mkdir -p /experimentos-resultados/logs
 
 echo "[experimento] Throughput del balanceador (VIP ${VIP}), ${N_REQUESTS} requests" | tee "$OUT_FILE"
 

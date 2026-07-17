@@ -11,8 +11,8 @@ USER="jperez"
 PASS="${KRB5_USER_DEFAULT_PASSWORD:-changeme_user}"
 BASE_DN="${LDAP_BASE_DN:-dc=fis,dc=epn,dc=ec}"
 ADMIN_PASS="${LDAP_ADMIN_PASSWORD:-changeme123}"
-OUT_FILE="experimentos/resultados/particion-red-$(date +%Y%m%d-%H%M%S).txt"
-mkdir -p experimentos/resultados
+OUT_FILE="experimentos/resultados/logs/particion-red-$(date +%Y%m%d-%H%M%S).txt"
+mkdir -p experimentos/resultados/logs
 
 echo "[experimento] Particion de red en idm1 (iptables DROP total)" | tee "$OUT_FILE"
 

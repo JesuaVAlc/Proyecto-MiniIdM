@@ -1,0 +1,4 @@
+[experimento] Tiempo de recuperacion: kill -9 a 'slapd' en 'idm1'
+[experimento] T0 (kill -9 enviado): 2026-07-17T09:42:36.233Z
+[experimento] T1 (proceso RUNNING de nuevo): 2026-07-17T09:43:19.753Z
+[experimento] RESULTADO: FALLO -- el proceso no volvio a RUNNING tras 30s.

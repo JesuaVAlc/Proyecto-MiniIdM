@@ -1,0 +1,32 @@
+=== Orquestador de experimentos MiniIdM ===
+Inicio: 2026-07-17T09:49:12.491Z
+
+--- Replicacion LDAP (1 corridas) ---
+[resumen] Replicacion LDAP: 1/1 exitosas, promedio = 0.0528422
+
+--- Overhead TLS (1 corridas) ---
+[orquestador] Overhead TLS: corrida 1 exit=0 pero el patron no matcheo -- revisar regex
+--- salida cruda de esa corrida ---
+[experimento] Overhead de TLS: LDAP plano vs LDAPS
+[experimento] Query LDAP plano (389): 0.00728035 segundos
+[experimento] Query LDAPS (636): 0.00725031 segundos
+[experimento] RESULTADO: overhead de TLS = -3.004e-05 segundos.
+[experimento] Evidencia guardada en: /experimentos-resultados/overhead-tls-20260717-094913.txt
+--- fin salida cruda ---
+[resumen] Overhead TLS: 0/1 exitosas, sin datos para promedio
+
+--- Throughput balanceo (1 corridas) ---
+[resumen] Throughput balanceo: 1/1 exitosas, promedio = 211.489
+
+--- Failover KDC (1 corridas) ---
+[resumen] Failover KDC: 1/1 exitosas, promedio = 0.410596
+
+--- Recuperacion nodo (idm1/slapd) (1 corridas) ---
+[resumen] Recuperacion nodo (idm1/slapd): 1/1 exitosas, promedio = 2.04071
+
+--- Particion de red (idm1) (1 corridas) ---
+[resumen] Particion de red (idm1): 1/1 exitosas, promedio = 3.17854
+
+=== Fin del orquestador ===
+Fin: 2026-07-17T09:49:30.081Z
+

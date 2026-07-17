@@ -1,0 +1,6 @@
+[experimento] Retardo de propagacion LDAP (idm1 -> idm2)
+[experimento] Marca de prueba: sync-test-1784281856289425778
+[experimento] T0 (escritura en idm1): 2026-07-17T09:50:56.305Z
+[experimento] Escritura confirmada en idm1. Sondeando idm2...
+[experimento] T1 (deteccion en idm2): 2026-07-17T09:50:56.371Z
+[experimento] RESULTADO: propagacion exitosa en .066193586 segundos (0 sondeos de 0.1s).

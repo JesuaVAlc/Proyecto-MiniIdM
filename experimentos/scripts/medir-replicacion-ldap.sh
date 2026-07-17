@@ -4,8 +4,8 @@ set -uo pipefail
 export LDAPTLS_CACERT=/etc/fis-ca/certs/ca.cert.pem
 
 USER_DN="uid=jperez,ou=people,${LDAP_BASE_DN}"
-OUT_FILE="/experimentos-resultados/replicacion-ldap-$(date +%Y%m%d-%H%M%S).txt"
-mkdir -p /experimentos-resultados
+OUT_FILE="/experimentos-resultados/logs/replicacion-ldap-$(date +%Y%m%d-%H%M%S).txt"
+mkdir -p /experimentos-resultados/logs
 
 MARCA="sync-test-$(date +%s%N)"
 

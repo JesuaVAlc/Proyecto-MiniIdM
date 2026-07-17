@@ -1,0 +1,4 @@
+[experimento] Overhead de TLS: LDAP plano vs LDAPS
+[experimento] Query LDAP plano (389): 0.0124567 segundos
+[experimento] Query LDAPS (636): 0.0145814 segundos
+[experimento] RESULTADO: overhead de TLS = 0.0021247 segundos.

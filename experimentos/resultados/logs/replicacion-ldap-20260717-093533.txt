@@ -1,0 +1,4 @@
+[experimento] Retardo de propagacion LDAP (idm1 -> idm2)
+[experimento] Marca de prueba: sync-test-1784280933930354277
+[experimento] T0 (escritura en idm1): 2026-07-17T09:35:33.964Z
+[experimento] ERROR: no se pudo escribir en idm1.

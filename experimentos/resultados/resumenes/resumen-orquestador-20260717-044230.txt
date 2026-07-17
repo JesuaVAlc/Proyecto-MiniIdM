@@ -1,0 +1,45 @@
+=== Orquestador de experimentos MiniIdM ===
+Inicio: 2026-07-17T09:42:31.742Z
+
+--- Replicacion LDAP (1 corridas) ---
+[resumen] Replicacion LDAP: 1/1 exitosas, promedio = 0.0756424
+
+--- Overhead TLS (1 corridas) ---
+[resumen] Overhead TLS: 1/1 exitosas, promedio = 0.0133417
+
+--- Throughput balanceo (1 corridas) ---
+[resumen] Throughput balanceo: 1/1 exitosas, promedio = 206.513
+
+--- Failover KDC (1 corridas) ---
+[resumen] Failover KDC: 1/1 exitosas, promedio = 0.423904
+
+--- Recuperacion nodo (idm1/slapd) (1 corridas) ---
+[orquestador] Recuperacion nodo (idm1/slapd): corrida 1 FALLO (exit 1)
+--- salida cruda del fallo ---
+[experimento] Tiempo de recuperacion: kill -9 a 'slapd' en 'idm1'
+[experimento] T0 (kill -9 enviado): 2026-07-17T09:42:36.233Z
+[experimento] T1 (proceso RUNNING de nuevo): 2026-07-17T09:43:19.753Z
+[experimento] RESULTADO: FALLO -- el proceso no volvio a RUNNING tras 30s.
+--- fin salida cruda ---
+[resumen] Recuperacion nodo (idm1/slapd): 0/1 exitosas, sin datos para promedio
+
+--- Particion de red (idm1) (1 corridas) ---
+[orquestador] Particion de red (idm1): corrida 1 FALLO (exit 1)
+--- salida cruda del fallo ---
+[experimento] Particion de red en idm1 (iptables DROP total)
+[experimento] Aplicando particion de red en idm1...
+Error response from daemon: container e71861f315ae102c8ec28cc2a16e09ee206607918001b744ddfee12960e7e695 is not running
+[experimento] T0 (particion aplicada): 2026-07-17T09:43:20.504Z
+[experimento] Verificando disponibilidad LDAP via idm2 durante la particion...
+[experimento] Verificando autenticacion Kerberos via idm2 durante la particion...
+[experimento] LDAP via idm2 durante particion: DISPONIBLE
+[experimento] Kerberos via idm2 durante particion: DISPONIBLE
+[experimento] Removiendo particion de red en idm1...
+Error response from daemon: container e71861f315ae102c8ec28cc2a16e09ee206607918001b744ddfee12960e7e695 is not running
+[experimento] RESULTADO: FALLO -- idm1 no fue alcanzable tras 30s de remover la particion.
+--- fin salida cruda ---
+[resumen] Particion de red (idm1): 0/1 exitosas, sin datos para promedio
+
+=== Fin del orquestador ===
+Fin: 2026-07-17T09:44:10.385Z
+

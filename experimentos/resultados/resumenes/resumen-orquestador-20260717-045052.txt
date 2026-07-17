@@ -1,0 +1,24 @@
+=== Orquestador de experimentos MiniIdM ===
+Inicio: 2026-07-17T09:50:54.345Z
+
+--- Replicacion LDAP (5 corridas) ---
+[resumen] Replicacion LDAP: 5/5 exitosas, promedio = 0.0597278
+
+--- Overhead TLS (5 corridas) ---
+[resumen] Overhead TLS: 5/5 exitosas, promedio = 0.00155006
+
+--- Throughput balanceo (5 corridas) ---
+[resumen] Throughput balanceo: 5/5 exitosas, promedio = 214.946
+
+--- Failover KDC (3 corridas) ---
+[resumen] Failover KDC: 3/3 exitosas, promedio = 0.403327
+
+--- Recuperacion nodo (idm1/slapd) (3 corridas) ---
+[resumen] Recuperacion nodo (idm1/slapd): 3/3 exitosas, promedio = 2.07949
+
+--- Particion de red (idm1) (1 corridas) ---
+[resumen] Particion de red (idm1): 1/1 exitosas, promedio = 3.32491
+
+=== Fin del orquestador ===
+Fin: 2026-07-17T09:51:41.356Z
+

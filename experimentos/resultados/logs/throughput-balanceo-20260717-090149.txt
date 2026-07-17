@@ -1,0 +1,4 @@
+[experimento] Throughput del balanceador (VIP 192.168.25.100), 50 requests
+[experimento] Requests exitosos: 1/50
+[experimento] Duracion total: 4.18933 segundos
+[experimento] RESULTADO: throughput = 0.238702 requests/segundo.

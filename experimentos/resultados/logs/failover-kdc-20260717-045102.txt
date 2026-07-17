@@ -1,0 +1,7 @@
+[experimento] Latencia de failover del KDC (idm1 -> idm2)
+[experimento] Ticket inicial contra idm1: OK
+[experimento] Deteniendo idm1...
+[experimento] T0 (idm1 detenido, iniciando kinit contra idm2): 2026-07-17T09:51:03.924Z
+[experimento] T1 (kinit completado): 2026-07-17T09:51:04.373Z
+[experimento] Restaurando idm1...
+[experimento] RESULTADO: failover exitoso en 0.449484 segundos.
