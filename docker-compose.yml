@@ -67,6 +67,10 @@ services:
     networks:
       fis-net:
         ipv4_address: 192.168.25.40
+    volumes:
+       - ./experimentos/scripts:/experimentos:ro
+       - ./experimentos/resultados:/experimentos-resultados
+       - ca-data:/etc/fis-ca:ro
     depends_on:
       - idm1
       - idm2
