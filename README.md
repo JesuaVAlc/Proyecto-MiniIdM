@@ -1,8 +1,4 @@
-# Infraestructura de Identidad Segura para la FIS
-
-Proyecto individual de Computacion Distribuida. Implementa una infraestructura
-de gestion de identidades con LDAP, Kerberos, PKI y Alta Disponibilidad,
-desplegada integramente con Docker Compose (sin maquinas virtuales).
+# Proyecto Segundo Bimestre - MiniIDM - Jesua Villacis
 
 ## Arquitectura del sistema
 
@@ -29,6 +25,8 @@ responsabilidad especifica:
 `192.168.25.100`, gestionada por Keepalived. HAProxy
 hace balanceo round-robin en modo TCP (passthrough de TLS) entre `idm1` e
 `idm2` como backends.
+
+`Cada contenedor contiene una imagen de Ubuntu 24.04`
 
 ## Realm de Kerberos
 
