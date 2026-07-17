@@ -7,9 +7,21 @@ scrape_configs:
       - targets: ['cadvisor:8080']
 
   - job_name: 'ldap-idm1'
+    honor_labels: true
     static_configs:
       - targets: ['ldap-exporter-idm1:9330']
 
   - job_name: 'ldap-idm2'
+    honor_labels: true
     static_configs:
       - targets: ['ldap-exporter-idm2:9330']
+  
+  - job_name: 'kerberos-idm1'
+    honor_labels: true
+    static_configs:
+      - targets: ['idm1:9331']
+
+  - job_name: 'kerberos-idm2'
+    honor_labels: true
+    static_configs:
+      - targets: ['idm2:9331']

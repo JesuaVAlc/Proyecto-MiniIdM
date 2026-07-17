@@ -13,8 +13,11 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     gnupg \
     gettext-base \
     supervisor \
+    python3 \
+    python3-pip \
     && rm -rf /var/lib/apt/lists/*
 
+RUN pip install --no-cache-dir --break-system-packages prometheus_client
 RUN systemctl disable slapd 2>/dev/null || true
 
 COPY config/krb5.conf /etc/krb5.conf
@@ -27,8 +30,9 @@ COPY scripts/init-ldap.sh /usr/local/bin/init-ldap.sh
 COPY scripts/init-kerberos.sh /usr/local/bin/init-kerberos.sh
 COPY scripts/entrypoint.sh /usr/local/bin/entrypoint.sh
 COPY scripts/propagate-kerberos.sh /usr/local/bin/propagate-kerberos.sh
+COPY scripts/kerberos_exporter.py /usr/local/bin/kerberos_exporter.py
 RUN chmod +x /usr/local/bin/*.sh
 
-EXPOSE 389 636 88 88/udp 749
+EXPOSE 389 636 88 88/udp 749 9331
 
 ENTRYPOINT ["/usr/local/bin/entrypoint.sh"]
