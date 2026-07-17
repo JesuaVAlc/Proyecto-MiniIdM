@@ -4,7 +4,8 @@ services:
     container_name: ca1
     hostname: ca1
     networks:
-      - fis-net
+      fis-net:
+        ipv4_address: 192.168.25.5
     volumes:
       - ca-data:/etc/fis-ca
 
@@ -17,8 +18,12 @@ services:
       - LDAP_BASE_DN=${LDAP_BASE_DN}
       - KRB5_ADMIN_PASSWORD=${KRB5_ADMIN_PASSWORD}
       - KRB5_USER_DEFAULT_PASSWORD=${KRB5_USER_DEFAULT_PASSWORD}
+    cap_add:
+      - NET_ADMIN
+      - NET_RAW
     networks:
       fis-net:
+        ipv4_address: 192.168.25.11
         aliases:
           - idm1.fis.epn.ec
     volumes:
@@ -38,8 +43,12 @@ services:
       - LDAP_ADMIN_PASSWORD=${LDAP_ADMIN_PASSWORD}
       - LDAP_BASE_DN=${LDAP_BASE_DN}
       - KRB5_ADMIN_PASSWORD=${KRB5_ADMIN_PASSWORD}
+    cap_add:
+      - NET_ADMIN
+      - NET_RAW
     networks:
       fis-net:
+        ipv4_address: 192.168.25.12
         aliases:
           - idm2.fis.epn.ec
     volumes:
@@ -56,7 +65,8 @@ services:
       context: ./client
     container_name: client
     networks:
-      - fis-net   
+      fis-net:
+        ipv4_address: 192.168.25.40
     depends_on:
       - idm1
       - idm2
@@ -71,7 +81,7 @@ services:
       - NET_RAW
     networks:
       fis-net:
-        ipv4_address: 172.28.0.10
+        ipv4_address: 192.168.25.20
     depends_on:
       - idm1
       - idm2
@@ -86,11 +96,11 @@ services:
       - NET_RAW
     networks:
       fis-net:
-        ipv4_address: 172.28.0.11
+        ipv4_address: 192.168.25.21
     depends_on:
       - idm1
       - idm2
-      
+
   web1:
     build:
       context: ./web1
@@ -98,6 +108,7 @@ services:
     hostname: web1
     networks:
       fis-net:
+        ipv4_address: 192.168.25.30
         aliases:
           - web1.fis.epn.ec
     volumes:
@@ -114,7 +125,8 @@ services:
     container_name: cadvisor
     privileged: true
     networks:
-      - fis-net
+      fis-net:
+        ipv4_address: 192.168.25.50
     volumes:
       - /:/rootfs:ro
       - /var/run:/var/run:ro
@@ -133,7 +145,8 @@ services:
       - LDAP_BIND_DN=cn=admin,${LDAP_BASE_DN}
       - LDAP_BIND_PASSWORD=${LDAP_ADMIN_PASSWORD}
     networks:
-      - fis-net
+      fis-net:
+        ipv4_address: 192.168.25.53
     depends_on:
       - idm1
 
@@ -146,7 +159,8 @@ services:
       - LDAP_BIND_DN=cn=admin,${LDAP_BASE_DN}
       - LDAP_BIND_PASSWORD=${LDAP_ADMIN_PASSWORD}
     networks:
-      - fis-net
+      fis-net:
+        ipv4_address: 192.168.25.54
     depends_on:
       - idm2
 
@@ -156,7 +170,8 @@ services:
     volumes:
       - ./monitoring/prometheus/prometheus.yml:/etc/prometheus/prometheus.yml:ro
     networks:
-      - fis-net
+      fis-net:
+        ipv4_address: 192.168.25.51
     ports:
       - "9090:9090"
 
@@ -164,7 +179,8 @@ services:
     image: grafana/grafana:latest
     container_name: grafana
     networks:
-      - fis-net
+      fis-net:
+        ipv4_address: 192.168.25.52
     ports:
       - "3000:3000"
     environment:
@@ -173,13 +189,13 @@ services:
       - ./monitoring/grafana/provisioning:/etc/grafana/provisioning:ro
     depends_on:
       - prometheus
-      
+
 networks:
   fis-net:
     driver: bridge
     ipam:
       config:
-        - subnet: 172.28.0.0/24
+        - subnet: 192.168.25.0/24
 
 volumes:
   ca-data:
@@ -187,5 +203,5 @@ volumes:
   idm1-krb5-data:
   idm2-ldap-data:
   idm2-krb5-data:
-  krb5-shared: 
-  keytabs-shared: 
+  krb5-shared:
+  keytabs-shared:

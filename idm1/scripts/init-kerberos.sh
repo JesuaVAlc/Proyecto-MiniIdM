@@ -60,10 +60,16 @@ chmod 600 /etc/krb5kdc/shared/stash
 
 echo "[idm1] Principals de host y material compartido listos para kprop."
 
-echo "[idm1] Creando principal de servicio HTTP para web1..."
-kadmin.local -q "addprinc -randkey HTTP/web1.fis.epn.ec" || true
+echo "[idm1] Verificando/creando principal de servicio HTTP para web1..."
+if ! kadmin.local -q "getprinc HTTP/web1.fis.epn.ec" 2>/dev/null | grep -q "Principal: HTTP/web1.fis.epn.ec"; then
+  kadmin.local -q "addprinc -randkey HTTP/web1.fis.epn.ec"
+  echo "[idm1] Principal HTTP/web1.fis.epn.ec creado por primera vez."
+else
+  echo "[idm1] Principal HTTP/web1.fis.epn.ec ya existe, NO se regenera la clave."
+fi
 
 mkdir -p /etc/krb5kdc/keytabs-out
+rm -f /etc/krb5kdc/keytabs-out/web1-http.keytab
 kadmin.local -q "ktadd -k /etc/krb5kdc/keytabs-out/web1-http.keytab HTTP/web1.fis.epn.ec"
 chmod 644 /etc/krb5kdc/keytabs-out/web1-http.keytab
 
